@@ -1,0 +1,68 @@
+﻿@model Tp_promocion_peliculas.Models.Film
+
+@{ ViewData["Title"] = Html.DisplayFor(model => model.Title); }
+
+<h1>@Html.DisplayFor(model => model.Title)</h1>
+
+<div>
+    <p>Fecha de estreno:</p>
+    <span>@Html.DisplayFor(model => model.ReleaseDate)</span>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+ 
+                <img src="~/images/movies/@Model.Photo" alt="Imagen de pelicula" width="250" height="300" asp-append-version="true" />
+                <iframe src="@Html.DisplayFor(model => model.Trailer)" width="700" height="300"></iframe>
+            </div>
+            <div class="row">
+                <div class="text-body">
+                    <h6>Género: </h6>
+                    <p>@Html.DisplayFor(model => model.Genders.Description)</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="text-body">
+                    <h6>Descripción: </h6>
+                    <p>@Html.DisplayFor(model => model.Summary)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    @if (Model.MovieActors == null || Model.MovieActors.Count == 0)
+     {
+        <div>No hay actores en la pelicula</div>
+        
+     }
+     else
+     {
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Foto actor</th>
+                        <th>Nombre actor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.MovieActors)
+                     {
+                         <tr>
+                            <td>
+                             <img src="~/images/actors/@item.Person.Photo" height="90" width="90" asp-append-version="true" />
+                            </td>
+                            <td>
+                               @Html.DisplayFor(modelItem => item.Person.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Film.Title)
+                            </td>
+                         </tr>                }
+                </tbody>
+            </table>
+     }
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Editar</a> |
+    <a asp-action="Index">Regresar</a>
+</div>

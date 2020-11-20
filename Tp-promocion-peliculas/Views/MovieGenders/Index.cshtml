@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Tp_promocion_peliculas.Models.MovieGender>
+
+@{
+    ViewData["Title"] = "Peliculas y generos";
+}
+
+<h1>Peliculas y generos</h1>
+
+<p>
+    <a asp-action="Create">Crear pelicula y genero</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Film)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) 
+         {
+           <tr>
+              <td>
+                @Html.DisplayFor(modelItem => item.Film.Summary)
+              </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.Gender.Description)
+              </td>
+              <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+              </td>
+           </tr>
+         }
+    </tbody>
+</table>

@@ -1,0 +1,55 @@
+﻿@model Tp_promocion_peliculas.Models.Person
+
+@{
+    ViewData["Title"] = "Editar - actor";
+}
+
+<h1>Editar actor</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Birthdate" class="control-label"></label>
+                <input asp-for="Birthdate" class="form-control" />
+                <span asp-validation-for="Birthdate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Biography" class="control-label"></label>
+                <br />
+                <textarea asp-for="Biography" rows="4" maxlength="200" minlength="1"></textarea>
+                <span asp-validation-for="Biography" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="Photo" />
+            <label>Imagen de actor</label>
+            <div class="form-group">
+                <img src="~/images/actors/@Model.Photo" id="image" asp-append-version="true" width="200" height="250" />
+                <input asp-for="Photo" type="file" id="SelectedImg" class="form-control" />
+            </div>
+
+
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Regresar a la lista</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="~/js/images.js"></script>
+}

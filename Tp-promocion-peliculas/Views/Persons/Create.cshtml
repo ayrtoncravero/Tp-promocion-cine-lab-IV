@@ -1,0 +1,52 @@
+﻿@model Tp_promocion_peliculas.Models.Person
+
+@{
+    ViewData["Title"] = "Crear - actor";
+}
+
+<h1>Crear actor</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data" asp-controller="Persons" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Birthdate" class="control-label"></label>
+                <input asp-for="Birthdate" class="form-control" />
+                <span asp-validation-for="Birthdate" class="text-danger"></span>
+            </div>
+            <label asp-for="Biography" class="control-label"></label>
+            <div class="form-group">
+                <br />
+                <textarea asp-for="Biography" rows="4" maxlength="200" minlength="1"></textarea>
+                <span asp-validation-for="Biography" class="text-danger"></span>
+            </div>
+            <label>Imagen de actor</label>
+            <input type="hidden" asp-for="Photo" />
+            <div class="form-group">
+                <input asp-for="Photo" type="file" id="SelectedImg" class="form-control" />
+                <img id="image" src="" alt="Imagen de actor" width="200" height="250" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Crear" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Regresar a la lista</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="~/js//images.js"></script>

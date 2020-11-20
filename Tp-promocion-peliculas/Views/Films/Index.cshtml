@@ -1,0 +1,68 @@
+﻿@model Tp_promocion_peliculas.ViewModel.MovieViewModel
+
+@{
+    ViewData["Title"] = "Peliculas";
+}
+
+<h1>Todas las peliculas</h1>
+
+<p>
+    <a class="btn btn-info" asp-action="Create">Crear nueva pelicula</a>
+</p>
+
+
+<h2>Cartelera semanal</h2>
+<br />
+
+<div class="row">
+    @foreach (var item in Model.Films)
+     {
+        <div class="text-center">
+            @if (item.billboard == true)
+             {
+                <div class="col-sm-3">
+                    <div class="card text-white border-success bg-dark rounded" style="width: 15rem">
+                        <a asp-action="Details" asp-route-id="@item.Id">
+                            <img src="~/images/movies/@item.Photo" height="260" width="207" asp-append-version="true" alt=@Html.DisplayFor(modelItem => item.Title) />
+                        </a>
+                        <div class="card-body">
+                            <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>
+                            <div class="">
+                                <a class="btn btn-info" asp-action="Edit" asp-route-id="@item.Id">Editar</a>
+                                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Borrar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+             }
+        </div>
+     }
+</div>
+<br />
+<h2>Próximas extrenos de la semana siguiente</h2>
+<br />
+<div class="row">
+    @foreach (var item in Model.Films)
+     {
+        <div class="text-center">
+            @if (item.billboard == false)
+             {
+                <div class="col-sm-3">
+                    <div class="card text-white border-danger bg-dark rounded" style="width: 15rem">
+                        <a asp-action="Details" asp-route-id="@item.Id">
+                            <img src="~/images/movies/@item.Photo" height="260" width="207" asp-append-version="true" alt=@Html.DisplayFor(modelItem => item.Title) />
+                        </a>
+                        <div class="card-body">
+                            <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>
+                            <div class="">
+                                <a class="btn btn-info" asp-action="Edit" asp-route-id="@item.Id">Editar</a>
+                                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Borrar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+             }
+        </div>
+     }
+</div>
+<br />
